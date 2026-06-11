@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2b3421">
+<title>видихни · 9 днів · €19 · Таня</title>
+
+<!-- Google Fonts: Anton (display) + Dancing Script (cursive) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=Dancing+Script:wght@600;700&family=Italianno&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Шрифти тільки з Google Fonts — щоб мобільний і десктоп рендерили однаково */
+
+/* === Палітра === */
+:root {
+  --bg-deep: #2b3421;      /* глибокий мшистий зелений */
+  --bg-mid: #353e2a;       /* лісова олива */
+  --bg-soft: #444e36;      /* світліша олива */
+  --bg-fog: #535e42;       /* туман на оливковому */
+  --cream: #DCC9A8;        /* теплий кремовий */
+  --cream-soft: #c8b690;   /* приглушений беж */
+  --cream-mid: #a89878;    /* теплий беж */
+  --accent: #E47A7C;       /* кораловий */
+  --accent-script: #E47A7C;/* шрифтовий кораловий */
+  --rose: #E47A7C;         /* кораловий акцент */
+  --text-on-dark: #DCC9A8;
+  --text-on-light: #2b3421;
+  --line: #535e42;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-deep);
+  color: var(--text-on-dark);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* === Типографіка === */
+.display {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  text-transform: lowercase;
+}
+.script {
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.15;
+}
+
+/* === Контейнер === */
+.wrap { max-width: 520px; margin: 0 auto; padding: 0 22px; }
+section { padding: 88px 0; position: relative; }
+.center { text-align: center; }
+
+/* === Кнопка з motion-ефектами === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--cream);
+  color: var(--text-on-light);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  padding: 18px 36px;
+  border: none;
+  border-radius: 60px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-width: 200px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              background 0.3s ease,
+              color 0.3s ease;
+  will-change: transform, box-shadow;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Shine-sweep — світловий блік пробігає зліва-направо */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 250, 235, 0.0) 30%,
+    rgba(255, 250, 235, 0.55) 50%,
+    rgba(255, 250, 235, 0.0) 70%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+.btn:hover::before { left: 130%; }
+
+/* Lift + soft scale + золотисте сяйво на hover */
+.btn:hover {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow:
+    0 16px 32px rgba(228, 122, 124, 0.35),
+    0 0 0 1px rgba(228, 122, 124, 0.4),
+    0 0 60px rgba(228, 122, 124, 0.25);
+}
+
+/* Активний стан — м'який press */
+.btn:active {
+  transform: translateY(-1px) scale(0.985);
+  transition: transform 0.1s ease;
+  box-shadow:
+    0 6px 14px rgba(228, 122, 124, 0.3),
+    0 0 30px rgba(228, 122, 124, 0.2);
+}
+
+/* Outline-варіант — заповнюється при hover */
+.btn.outline {
+  background: transparent;
+  border: 1.5px solid var(--cream);
+  color: var(--cream);
+  box-shadow: 0 0 0 0 transparent;
+}
+.btn.outline:hover {
+  background: var(--cream);
+  color: var(--text-on-light);
+  box-shadow:
+    0 14px 28px rgba(220, 201, 168, 0.25),
+    0 0 50px rgba(220, 201, 168, 0.2);
+}
+
+/* Gold-варіант — головний CTA з пульсуючим сяйвом */
+.btn.gold {
+  background: var(--accent);
+  color: var(--text-on-light);
+  animation: gold-pulse 2.8s ease-in-out infinite;
+}
+.btn.gold:hover {
+  background: #d9bb83;
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 20px 40px rgba(228, 122, 124, 0.55),
+    0 0 0 2px rgba(228, 122, 124, 0.5),
+    0 0 80px rgba(228, 122, 124, 0.45);
+  animation-play-state: paused;
+}
+@keyframes gold-pulse {
+  0%, 100% {
+    box-shadow:
+      0 6px 16px rgba(228, 122, 124, 0.25),
+      0 0 0 0 rgba(228, 122, 124, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 10px 26px rgba(228, 122, 124, 0.45),
+      0 0 0 8px rgba(228, 122, 124, 0);
+  }
+}
+
+/* Ripple — пляма на тапі */
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(228, 122, 124, 0.55) 0%, rgba(228, 122, 124, 0) 70%);
+  transform: scale(0);
+  animation: ripple 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Іскри — золоті точки, що вилітають з кнопки */
+.spark {
+  position: absolute;
+  width: 5px; height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 0 8px var(--accent), 0 0 16px rgba(228,122,124,0.6);
+  animation: spark-fly 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes spark-fly {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(var(--dx), var(--dy)) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--dx) * 2.2), calc(var(--dy) * 2.2 + 18px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* На мобільному прибираємо hover — лишається тільки tap-feel */
+@media (hover: none) {
+  .btn:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .btn.gold:hover {
+    transform: none;
+    background: var(--accent);
+  }
+  .btn.outline:hover {
+    background: transparent;
+    color: var(--cream);
+  }
+}
+
+/* === Pill (як «13-17 червня») === */
+.pill {
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(43,52,33,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(236,227,203,0.45);
+  border-radius: 60px;
+  font-size: 13px;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  font-weight: 600;
+}
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 86vh;
+  min-height: 86svh;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-deep);
+  z-index: 0;
+  will-change: transform;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 65%;
+  transform: scale(1.5);
+  transform-origin: center 60%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(43,52,33,0.4) 0%,
+    rgba(43,52,33,0.15) 30%,
+    rgba(43,52,33,0.7) 75%,
+    rgba(43,52,33,0.95) 100%);
+}
+.hero-top {
+  position: relative; z-index: 2;
+  padding: env(safe-area-inset-top) 22px 0;
+  padding-top: max(env(safe-area-inset-top), 24px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 28px;
+}
+.hero-top .pill { font-size: 12px; padding: 7px 16px; }
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 22px 24px;
+  text-align: left;
+}
+.hero h1 {
+  font-size: clamp(78px, 22vw, 130px);
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.hero .script-tag {
+  font-size: clamp(28px, 8vw, 42px);
+  color: var(--accent-script);
+  margin-left: 8px;
+  margin-bottom: 18px;
+  display: inline-block;
+  transform: rotate(-3deg);
+}
+.hero p {
+  font-size: 16px;
+  color: var(--cream-soft);
+  max-width: 360px;
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+.hero .meta-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--cream-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero .meta-row span { display: flex; align-items: center; gap: 6px; }
+.hero .meta-row .dot { color: var(--accent); font-size: 8px; }
+.hero .cta-wrap {
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+}
+.hero .cta-wrap .btn { width: 100%; max-width: 360px; }
+.scroll-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  color: var(--cream-soft);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+  opacity: 0.7;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ====== MARQUEE-СТРІЧКА ====== */
+.marquee {
+  background: var(--bg-mid);
+  padding: 22px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(168,152,120,0.15);
+  border-bottom: 1px solid rgba(168,152,120,0.15);
+}
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 50px;
+  animation: scroll 18s linear infinite;
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--accent-script);
+  will-change: transform;
+}
+.marquee-track span { display: inline-block; flex-shrink: 0; }
+.marquee-track .dot { color: var(--cream-mid); font-size: 12px; align-self: center; }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ====== MANIFEST / DZERKALO ====== */
+.manifest { background: var(--cream); color: var(--text-on-light); }
+.manifest .kicker {
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--accent-script);
+  margin-bottom: 14px;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+.manifest h2 {
+  font-size: clamp(36px, 9vw, 52px);
+  color: var(--text-on-light);
+  margin-bottom: 32px;
+}
+.manifest h2 .display { display: block; }
+.manifest ul {
+  list-style: none;
+  margin: 22px 0 28px;
+}
+.manifest ul li {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(43,52,33,0.15);
+  font-size: 17px;
+  color: #3a4127;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.manifest ul li::before { content: '~'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+.manifest .punch {
+  font-size: 22px;
+  color: var(--text-on-light);
+  margin: 32px 0 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.manifest .punch strong {
+  display: inline-block;
+  background: var(--rose);
+  color: var(--cream);
+  padding: 0 8px;
+  font-family: 'Anton', 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.manifest .caps {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 28px;
+  color: #8a2e30;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-top: 20px;
+}
+
+/* ====== ЯК ПРАЦЮЄ ====== */
+.how { background: var(--bg-mid); padding: 80px 0; }
+.section-head {
+  text-align: left;
+  margin-bottom: 40px;
+}
+.section-head .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.section-head h2 {
+  font-size: clamp(40px, 11vw, 64px);
+  color: var(--cream);
+}
+.section-head h2 .script {
+  display: block;
+  color: var(--accent-script);
+  font-size: 0.6em;
+  margin-top: 4px;
+  margin-left: 30px;
+}
+.how-steps { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
+.how-step {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px;
+  background: rgba(220,201,168,0.05);
+  border: 1px solid rgba(168,152,120,0.15);
+  border-radius: 16px;
+}
+.how-step .num {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 42px;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 50px;
+}
+.how-step .txt h3 {
+  font-size: 18px;
+  color: var(--cream);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.how-step .txt p {
+  font-size: 15px;
+  color: var(--cream-soft);
+  line-height: 1.5;
+}
+
+/* ====== TIMELINE 9 ДНІВ ====== */
+.timeline-sec { background: var(--bg-deep); padding-bottom: 60px; }
+.timeline-hint {
+  font-size: 12px;
+  color: var(--cream-mid);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 14px;
+  opacity: 0.6;
+}
+.timeline-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 24px 22px 30px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.timeline-scroll::-webkit-scrollbar { display: none; }
+.tl-card {
+  flex: 0 0 78%;
+  max-width: 320px;
+  scroll-snap-align: center;
+  background: linear-gradient(160deg, var(--bg-fog), var(--bg-mid));
+  border: 1px solid var(--accent);
+  border-radius: 22px;
+  padding: 28px 24px;
+  position: relative;
+}
+.tl-card .day {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 70px;
+  color: var(--accent);
+  line-height: 0.9;
+}
+.tl-card .day small {
+  font-size: 14px;
+  color: var(--cream-mid);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  display: block;
+  margin-bottom: 4px;
+}
+.tl-card h4 {
+  font-size: 20px;
+  color: var(--cream);
+  margin: 14px 0 8px;
+  font-weight: 600;
+}
+.tl-card .anchor {
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--accent-script);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.tl-card p {
+  font-size: 14px;
+  color: var(--cream-soft);
+  line-height: 1.5;
+}
+.tl-card.special {
+  background: linear-gradient(160deg, var(--bg-fog), var(--bg-mid));
+  border-color: var(--accent);
+}
+.tl-card .badge {
+  position: absolute;
+  top: 18px; right: 18px;
+  background: var(--accent);
+  color: var(--text-on-light);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+/* ====== AUTHOR ====== */
+.author { background: var(--bg-mid); padding: 0; }
+.author-grid { display: flex; flex-direction: column; }
+.author-img {
+  height: 65vh;
+  height: 65svh;
+  max-height: 520px;
+  background: url('images/site/IMG_6771.jpg') center top / cover no-repeat;
+  position: relative;
+}
+.author-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(43,52,33,0) 50%, rgba(43,52,33,0.7) 100%);
+}
+.author-img .tag {
+  position: absolute;
+  bottom: 22px; left: 22px; right: 22px;
+  z-index: 2;
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--cream);
+  line-height: 1.15;
+}
+.author-text {
+  padding: 60px 22px 40px;
+}
+.author-text .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.author-text h2 {
+  font-size: clamp(40px, 11vw, 58px);
+  color: var(--cream);
+  margin-bottom: 22px;
+}
+.author-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-bottom: 26px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(168,152,120,0.15);
+  border-bottom: 1px solid rgba(168,152,120,0.15);
+}
+.author-facts span {
+  font-size: 14px;
+  color: var(--cream-soft);
+  display: flex; align-items: center; gap: 8px;
+}
+.author-facts span::after { content: '·'; color: var(--accent); margin-left: 8px; }
+.author-facts span:last-child::after { display: none; }
+.author-text p { margin-bottom: 16px; font-size: 16px; color: var(--cream-soft); }
+.author-text .punch {
+  font-size: 20px;
+  color: var(--cream);
+  font-weight: 500;
+  margin-top: 22px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(168,152,120,0.2);
+  line-height: 1.4;
+}
+
+/* ====== BENEFITS ====== */
+.benefits { background: var(--bg-deep); }
+.benefits ul {
+  list-style: none;
+  margin-top: 28px;
+}
+.benefits ul li {
+  display: flex; gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(168,152,120,0.12);
+  font-size: 16px;
+  color: var(--cream-soft);
+  align-items: flex-start;
+}
+.benefits ul li::before {
+  content: '~';
+  color: var(--accent);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.benefits ul li strong { color: var(--cream); font-weight: 600; }
+
+/* ====== ANTI / Чого тут НЕ буде ====== */
+.anti { background: var(--cream); color: var(--text-on-light); padding: 70px 0 80px; }
+.anti .caps {
+  font-size: 22px;
+  font-weight: 700;
+  color: #8a2e30;
+  line-height: 1.35;
+  margin-top: 28px;
+}
+@media (min-width: 1000px) {
+  .anti .caps { font-size: 32px; }
+}
+.anti ul { list-style: none; margin-top: 28px; }
+.anti ul li {
+  display: flex; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(168,152,120,0.1);
+  font-size: 16px;
+  color: var(--cream-soft);
+}
+.anti ul li::before {
+  content: '✗';
+  color: var(--rose);
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.anti .punch {
+  margin-top: 26px;
+  padding: 22px;
+  background: rgba(228,122,124,0.12);
+  border-left: 4px solid var(--rose);
+  border-radius: 0 14px 14px 0;
+  font-size: 17px;
+  color: var(--text-on-light);
+  font-style: italic;
+}
+
+/* ====== ФІЛЬТР (Кому не підходить) ====== */
+.filter { background: var(--bg-deep); }
+.filter .block {
+  background: rgba(220,201,168,0.04);
+  border: 1px solid rgba(168,152,120,0.15);
+  border-radius: 18px;
+  padding: 26px;
+  margin-top: 24px;
+}
+.filter .block h3 {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 16px;
+  text-transform: lowercase;
+}
+.filter .block p { font-size: 16px; color: var(--cream-soft); margin-bottom: 10px; line-height: 1.55; }
+.filter .block p:last-child { margin-bottom: 0; }
+
+/* ====== PRICE / CTA ====== */
+.price-sec {
+  background: url('images/site/IMG_9959.jpg') center / cover no-repeat;
+  position: relative;
+  padding: 100px 0;
+}
+.price-sec::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(43,52,33,0.88), rgba(43,52,33,0.95));
+}
+.price-sec .wrap { position: relative; z-index: 2; }
+.price-card {
+  background: var(--cream);
+  border-radius: 24px;
+  padding: 36px 28px;
+  text-align: center;
+  color: var(--text-on-light);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.price-card .label {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-script);
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+.price-card .num {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 1;
+  color: var(--text-on-light);
+  letter-spacing: -0.02em;
+}
+.price-card .num sup { font-size: 36px; vertical-align: top; margin-right: 6px; font-weight: 500; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; }
+.price-card .tag {
+  font-family: 'Dancing Script', 'Snell Roundhand', 'Apple Chancery', 'Italianno', cursive;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--text-on-light);
+  margin: 12px auto 22px;
+  display: block;
+  line-height: 1.3;
+}
+.price-card .compare {
+  font-size: 14px;
+  color: #5a5040;
+  margin-bottom: 26px;
+  line-height: 1.6;
+}
+.price-card .compare strong { color: var(--text-on-light); font-weight: 600; }
+.price-card .btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 20px 24px;
+  box-shadow: 0 8px 22px rgba(228,122,124,0.45);
+}
+.price-card .btn:hover { background: #d8696b; box-shadow: 0 14px 32px rgba(228,122,124,0.55); }
+.price-card small {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  color: #7a6f5a;
+  letter-spacing: 0.05em;
+}
+
+/* ====== FAQ ====== */
+.faq { background: var(--cream); color: var(--text-on-light); }
+.faq .section-head h2 { color: var(--text-on-light); }
+.faq .section-head h2 .script { color: var(--accent-script); }
+.faq details {
+  border-bottom: 1px solid rgba(43,52,33,0.18);
+  padding: 18px 0;
+}
+.faq details:first-of-type { border-top: 1px solid rgba(43,52,33,0.18); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-on-light);
+  padding-right: 8px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+';
+  color: var(--accent);
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.faq details[open] summary::after { content: '−'; }
+.faq details p {
+  padding: 14px 0 0;
+  color: rgba(43,52,33,0.75);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ====== FINAL ====== */
+.final-sec {
+  background: url('images/site/IMG_9969.jpg') center / cover no-repeat;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding: 100px 0 100px;
+}
+.final-sec::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(43,52,33,0.3) 0%, rgba(43,52,33,0.65) 50%, rgba(43,52,33,0.95) 100%);
+}
+.final-sec .wrap { position: relative; z-index: 2; text-align: center; }
+.final-sec h2 {
+  font-size: clamp(56px, 16vw, 92px);
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.final-sec .script-line {
+  font-size: clamp(32px, 9vw, 48px);
+  color: var(--accent-script);
+  margin-bottom: 24px;
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+.final-sec p {
+  font-size: 17px;
+  color: var(--cream-soft);
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+.final-sec .btn { width: 100%; max-width: 360px; }
+
+/* ====== STICKY BOTTOM CTA (mobile) ====== */
+.sticky-cta {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(20,26,15,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168,152,120,0.25);
+  border-radius: 60px;
+  padding: 8px 8px 8px 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(120%);
+  transition: opacity 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+.sticky-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-cta .info {
+  flex: 1;
+  font-size: 14px;
+  color: var(--cream);
+  line-height: 1.2;
+}
+.sticky-cta .info strong {
+  font-family: 'Anton', 'Oswald', sans-serif;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.sticky-cta .info small { font-size: 11px; color: var(--cream-mid); display: block; }
+.sticky-cta .btn {
+  background: var(--cream);
+  color: var(--text-on-light);
+  font-size: 14px;
+  padding: 14px 22px;
+  min-width: auto;
+}
+@media (max-width: 360px) {
+  .sticky-cta .info strong { font-size: 19px; }
+}
+
+/* ====== FOOTER ====== */
+footer {
+  background: #1c2315;
+  padding: 40px 22px 110px;
+  text-align: center;
+  color: var(--cream-mid);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+footer .display { font-size: 32px; color: var(--cream); margin-bottom: 8px; }
+footer p { margin: 6px 0; opacity: 0.7; }
+
+/* ====== MOTION: fade-up при scroll ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+.reveal.delay-4 { transition-delay: 0.4s; }
+
+/* Handwriting reveal для script-тексту */
+.script-reveal {
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+}
+.script-reveal.in { opacity: 1; }
+
+/* === Desktop adjustments === */
+@media (min-width: 700px) {
+  body { font-size: 18px; }
+  .wrap { padding: 0 40px; }
+  section { padding: 110px 0; }
+  .hero-content { padding: 0 40px 70px; }
+  .hero-top { padding: 36px 40px 0; }
+  .hero h1 { font-size: 150px; }
+  .hero .script-tag { font-size: 52px; margin-left: 20px; }
+  .author-img { height: 90vh; max-height: 800px; }
+  .author-text { padding: 80px 40px 100px; }
+  .tl-card { flex-basis: 360px; }
+  .sticky-cta { left: 50%; transform: translateX(-50%) translateY(120%); max-width: 480px; }
+  .sticky-cta.visible { transform: translateX(-50%) translateY(0); }
+}
+
+/* No-scroll prevention for hero on mobile */
+@media (max-width: 700px) {
+  .hero h1 { letter-spacing: -0.04em; }
+}
+
+/* === Десктоп ≥1000px: широкі секції, 2-3 колонки, більші розміри === */
+@media (min-width: 1000px) {
+  body { font-size: 18px; line-height: 1.6; }
+
+  /* Глобальний wrap ширший, але прозові секції лишаються вузькими */
+  .wrap { max-width: 1100px; padding: 0 60px; }
+  section { padding: 130px 0; }
+
+  /* HERO — 2 колонки, контент по центру вертикалі */
+  .hero { min-height: 92vh; min-height: 92svh; justify-content: flex-start; }
+  .hero-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 40px 60px 0;
+    z-index: 3;
+  }
+  .hero-content {
+    padding: 80px 60px 60px;
+    max-width: 1280px;
+    margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(300px, 420px);
+    column-gap: 60px;
+    align-items: end;
+  }
+  .hero-content > .meta-row { grid-column: 1; grid-row: 1; margin-bottom: 18px; }
+  .hero-content > h1 { grid-column: 1; grid-row: 2; }
+  .hero-content > .script-tag { grid-column: 1; grid-row: 3; margin-top: 28px; margin-bottom: 0; margin-left: 14px; transform: rotate(-2deg); }
+  .hero-content > p { grid-column: 2; grid-row: 2 / 4; align-self: end; max-width: none; margin: 0 0 26px; }
+  .hero-content > .cta-wrap { grid-column: 2; grid-row: 4; margin-top: 32px; }
+  .hero h1 { font-size: 150px; margin-bottom: 0; line-height: 0.95; }
+  .hero .script-tag { font-size: 52px; }
+  .hero p {
+    font-size: 18px;
+    line-height: 1.65;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.65), 0 0 24px rgba(0,0,0,0.4);
+  }
+  .hero .cta-wrap .btn { max-width: 360px; padding: 22px 40px; font-size: 17px; }
+
+  /* Сильніший затемнюючий шар знизу для читабельності тексту */
+  .hero-img::after {
+    background:
+      linear-gradient(180deg,
+        rgba(43,52,33,0.45) 0%,
+        rgba(43,52,33,0.20) 30%,
+        rgba(43,52,33,0.75) 80%,
+        rgba(43,52,33,0.95) 100%),
+      radial-gradient(ellipse 60% 70% at 80% 75%,
+        rgba(43,52,33,0.55) 0%,
+        rgba(43,52,33,0) 70%);
+  }
+
+  /* MARQUEE — більший шрифт */
+  .marquee { padding: 30px 0; }
+  .marquee-track { font-size: 42px; gap: 70px; }
+
+  /* MANIFEST — прозова секція, вужча колонка */
+  .manifest .wrap { max-width: 780px; }
+  .manifest .kicker { font-size: 52px; margin-bottom: 24px; }
+  .manifest ul li { font-size: 19px; padding: 18px 0; }
+  .manifest .punch { font-size: 26px; margin: 40px 0 22px; line-height: 1.45; }
+  .manifest .caps { font-size: 36px; margin-top: 26px; }
+
+  /* ЯК ПРАЦЮЄ — 3 колонки */
+  .how .wrap { max-width: 1100px; }
+  .section-head h2 { font-size: 80px; }
+  .section-head h2 .script { font-size: 0.55em; margin-left: 60px; }
+  .how-steps { flex-direction: row; gap: 26px; margin-top: 40px; }
+  .how-step { flex: 1; flex-direction: column; padding: 32px 28px; min-height: 220px; }
+  .how-step .num { font-size: 56px; margin-bottom: 16px; }
+  .how-step .txt h3 { font-size: 21px; }
+  .how-step .txt p { font-size: 16px; }
+
+  /* TIMELINE — карточки центрі екрана, видно ~3 одночасно */
+  .timeline-scroll {
+    padding-left: max(60px, calc((100vw - 1100px) / 2));
+    padding-right: max(60px, calc((100vw - 1100px) / 2));
+    gap: 24px;
+  }
+  .tl-card { flex-basis: 380px; max-width: 380px; padding: 36px 30px; }
+  .tl-card .day { font-size: 84px; }
+
+  /* AUTHOR — фото зліва, текст справа */
+  .author-grid {
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .author-img {
+    flex: 1;
+    height: auto;
+    min-height: 760px;
+    max-height: none;
+    background-position: center 20%;
+  }
+  .author-text {
+    flex: 1;
+    padding: 100px 70px;
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .author-text h2 { font-size: 68px; }
+  .author-text p { font-size: 17px; line-height: 1.65; }
+  .author-text .punch { font-size: 21px; }
+
+  /* ANTI — звужена, центрована */
+  .anti .wrap { max-width: 780px; text-align: center; }
+  .anti .punch { font-size: 22px; padding: 32px; }
+  .anti .caps { font-size: 32px; }
+
+  /* ФІЛЬТР — 3 колонки */
+  .filter .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+    max-width: 1100px;
+  }
+  .filter .section-head { grid-column: 1 / -1; margin-bottom: 12px; }
+  .filter .block { margin-top: 0; padding: 32px 28px; }
+  .filter .block h3 { font-size: 24px; }
+
+  /* PRICE — центрована картка, ширша */
+  .price-sec { padding: 140px 0; }
+  .price-card {
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    border-radius: 28px;
+  }
+  .price-card .num { font-size: 130px; }
+  .price-card .num sup { font-size: 36px; }
+  .price-card .tag { font-size: 28px; }
+  .price-card .compare { font-size: 16px; }
+  .price-card .btn { font-size: 18px; padding: 22px 30px; }
+
+  /* FAQ — вузька колонка */
+  .faq .wrap { max-width: 820px; }
+  .faq summary { font-size: 18px; }
+  .faq details p { font-size: 16px; }
+  .faq details { padding: 24px 0; }
+
+  /* Footer */
+  footer { padding: 60px 22px 40px; }
+  footer .display { font-size: 40px; }
+}
+
+/* Дуже широкі екрани — обмежуємо щоб не розповзалось */
+@media (min-width: 1400px) {
+  .author-grid { max-width: 1320px; }
+  .author-img { min-height: 820px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="hero-img" id="heroImg">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/site/hero_poster.jpg?v=4">
+      <source src="images/site/hero.mp4?v=4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-top">
+    <span class="pill">9 днів</span>
+    <span class="pill">€19</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="meta-row reveal">
+      <span><span class="dot">●</span> для тих, хто заїбався</span>
+    </div>
+    <h1 class="display reveal">видихни</h1>
+    <span class="script-tag script script-reveal">9 дій між справами</span>
+    <p class="reveal delay-1">
+      60–90 секунд — твоя швидка допомога тут і зараз. Щоб відчути, як це — коли всередині натхнення, легкість, бажання діяти і просто є енергія щоранку, коли прокидаєшся.
+    </p>
+    <div class="cta-wrap reveal delay-2">
+      <a href="#price" class="btn gold">почати за €19 →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ====== MARQUEE ====== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>просто роби</span><span class="dot">●</span>
+    <span>60-90 секунд</span><span class="dot">●</span>
+    <span>9 дій</span><span class="dot">●</span>
+    <span>натхнення</span><span class="dot">●</span>
+    <span>легкість</span><span class="dot">●</span>
+    <span>енергія</span><span class="dot">●</span>
+    <span>просто роби</span><span class="dot">●</span>
+    <span>60-90 секунд</span><span class="dot">●</span>
+    <span>9 дій</span><span class="dot">●</span>
+    <span>натхнення</span><span class="dot">●</span>
+    <span>легкість</span><span class="dot">●</span>
+    <span>енергія</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- ====== MANIFEST ====== -->
+<section class="manifest">
+  <div class="wrap">
+    <span class="kicker script script-reveal">давай чесно,</span>
+
+    <ul>
+      <li class="reveal">підняті плечі цілий день — і ти вже навіть не помічаєш цього</li>
+      <li class="reveal delay-1">стиснута щелепа зранку — нічого ще не сталося, а вже відчуваєш стрес і напругу</li>
+      <li class="reveal delay-2">голова болить уже третій вечір поспіль</li>
+      <li class="reveal delay-3">спина і плечі — наче тягнеш на собі плиту від справ, обов'язків, роботи</li>
+      <li class="reveal delay-4">«я в нормі» — поки не сядеш увечері і не зрозумієш, що так вже не можеш</li>
+    </ul>
+
+    <p class="punch reveal">
+      «просто втомилась» і «просто відпочину — і все буде окей» — так вже не проходить.
+    </p>
+    <p class="caps reveal delay-1">і ні, само собою це не налагодиться.</p>
+  </div>
+</section>
+
+<!-- ====== ЯК ПРАЦЮЄ ====== -->
+<section class="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">як це працює</div>
+      <h2 class="display">9 днів<span class="script">між справами</span></h2>
+    </div>
+
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="num">01</div>
+        <div class="txt">
+          <h3>підписуєшся</h3>
+          <p>Один клік — і у тебе вже одна нова маленька дія, яка тут і зараз допоможе впоратись зі стресом.</p>
+        </div>
+      </div>
+      <div class="how-step reveal delay-1">
+        <div class="num">02</div>
+        <div class="txt">
+          <h3>щодня — одна дія</h3>
+          <p>60-90 секунд, прив'язана до того, що ти й так робиш щоденно: чистиш зуби, миєш посуд, сидиш за ноутбуком.</p>
+        </div>
+      </div>
+      <div class="how-step reveal delay-2">
+        <div class="num">03</div>
+        <div class="txt">
+          <h3>за 9 днів — інший стан у тілі</h3>
+          <p>Не «трансформація», чи «нове життя». Просто менше напруги, ясніша голова, якісніші рішення, тіло, яке скаже «дякую».</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TIMELINE 9 ДНІВ ====== -->
+<section class="timeline-sec">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">що тебе чекає</div>
+      <h2 class="display">девʼять<span class="script">днів і дій</span></h2>
+    </div>
+  </div>
+
+  <div class="timeline-scroll">
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">01</span>
+      <div class="anchor">перші 2 хвилини після будильника — ще в ліжку</div>
+      <p>Ти ще не встала — а щелепа вже стиснута, голова вже забита думками. Енергії немає, тіло ще не прокинулось — але ти вже в режимі «треба». Одна дія, 60 секунд — перш ніж взяти телефон. Щоб день почався з тебе.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">02</span>
+      <div class="anchor">поки заварюєш каву або чекаєш поки включиться ноут</div>
+      <p>Ти ще навіть не почала — а плечі вже біля вух. Тіло вже знає, що буде важко. Одна дія поки закипає вода — і ти сідаєш за роботу з іншим станом.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">03</span>
+      <div class="anchor">перед тим як відповісти на конфліктне повідомлення</div>
+      <p>Серце б'ється, пальці вже набирають. Ти відповідаєш з реакції — і потім шкодуєш. Ця дія — між «прочитала» і «відправила». 60 секунд, щоб відповісти з себе, а не зі стресу.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">04</span>
+      <div class="anchor">коли застрягла на задачі — робота не йде, думки по колу</div>
+      <p>Голова гуде. Дивишся в нікуди вже 10 хвилин — нічого. Ця дія знімає кашу в голові — і конкретну фізичну напругу.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">05</span>
+      <div class="anchor">щойно прочитала новини або повідомлення, яке зачепило</div>
+      <p>Тіло відреагувало — і ти навіть не помітила як. Стиснувся живіт. Зупинилось дихання. Я повертаю тебе назад — у тіло, у кімнату, у момент зараз. Не «не думай про це» або «просто не звертай уваги». Ця дія реально знімає твій стрес.</p>
+    </div>
+    <div class="tl-card special">
+      <small>день</small>
+      <span class="day">06</span>
+      <div class="anchor">поки стоїш у черзі — магазин, аптека, кава на виніс</div>
+      <p>Спина ниє. Ти стоїш і несвідомо тримаєш весь свій день у попереку. Ця дія — тазове дихання. Тіло розслабляється — і ти відчуваєш, як твій день змінюється з важкості на легкість.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">07</span>
+      <div class="anchor">перед сексом</div>
+      <p>Момент близькості — а в голові задачі, список, «треба не забути». Це не про розслаблення і не про близькість з партнером. Це про те, що ти не можеш вийти з голови і бути розслабленою. Дія на 90 секунд — і ти кайфуєш, а не думаєш про те, який план дій після цього.</p>
+    </div>
+    <div class="tl-card">
+      <small>день</small>
+      <span class="day">08</span>
+      <div class="anchor">поки приймаєш душ</div>
+      <p>Мала б бути розслабленою — але не відчуваєш тепла води. Стоїш і думаєш про завтра. Одна дія — контакт з собою, зі своїм тілом і присутність у моменті. 90 секунд на «повернення у своє тіло».</p>
+    </div>
+    <div class="tl-card special">
+      <small>день</small>
+      <span class="day">09</span>
+      <div class="anchor">коли не можеш заснути і листаєш телефон</div>
+      <p>Тіло лежить, спати хочеться — а голова не вимикається. Телефон не допомагає, ти хочеш позбутися цієї звички — але рука тягнеться сама. Одна дія, яка повертає тебе в розслаблення, в тіло — і ти засинаєш.</p>
+    </div>
+  </div>
+  <div class="timeline-hint">← гортай →</div>
+</section>
+
+<!-- ====== AUTHOR ====== -->
+<section class="author">
+  <div class="author-grid">
+    <div class="author-img"></div>
+    <div class="author-text">
+      <div class="eyebrow reveal">провідниця</div>
+      <h2 class="display reveal">привіт, я таня</h2>
+
+      <div class="author-facts reveal delay-1">
+        <span>32 роки</span>
+        <span>два бізнеси</span>
+        <span>17 людей в команді</span>
+        <span>подорожі · нерухомість · з контролюючої підприємиці перейшла в розслаблену кайфушницю</span>
+      </div>
+
+      <p class="reveal delay-2">
+        Я <strong>не маніфестую</strong>, не роблю грошові медитації і не дихаю маткою. Працюю з тілом, мисленням і ресурсом — три опори авторського методу <strong>«Цілісна»</strong>.
+      </p>
+      <p class="reveal delay-2">
+        За 6 років в онлайн-бізнесі і зміні ніші на провідника я навчилася одного: <strong>стратегія до сраки, маркетинг до сраки, нові курси до сраки</strong> — якщо твоє тіло зажате, в думках хаос та тривога, а енергії на нові задачі і дії — нуль.
+      </p>
+      <p class="reveal delay-3">
+        «Видихни» — це твоя швидка допомога тут і зараз. За 90 секунд у твоїх щоденних справах — тіло і голова скажуть тобі: «Дякую».
+      </p>
+
+      <div class="punch reveal delay-3">
+        «<strong>26 жінок</strong> пройшли зі мною 6 тижнів «Цілісної» — і кожна отримала своє: ×3 в доходах, стосунки мрії, рекорди в запусках, зміна ставлення до життя. <strong>Це не магія</strong>, це робота зі станом, тілом і ресурсом». Бо коли пусто чи в кредит — нічого не вийде.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ANTI ====== -->
+<section class="anti">
+  <div class="wrap">
+    <div class="punch reveal">
+      «Це не магія. Це інструменти та дії, які ти робиш регулярно в своїй щоденній рутині — і бачиш, як змінюється твій стан і відчуття свого тіла.»
+    </div>
+    <p class="caps reveal delay-1" style="margin-top:24px;">€19 — те, що відділяє тебе від можливості нарешті видихнути.</p>
+  </div>
+</section>
+
+<!-- ====== ФІЛЬТР ====== -->
+<section class="filter">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">чесно — кому НЕ підходить</div>
+      <h2 class="display">не бери,<span class="script">якщо</span></h2>
+    </div>
+
+    <div class="block reveal">
+      <h3>хочеш «просто почитати»</h3>
+      <p>Тут треба робити. Кілька хвилин на день, але робити. Якщо не плануєш — €19 справді не варті твого часу.</p>
+    </div>
+
+    <div class="block reveal delay-1">
+      <h3>чекаєш магічного зцілення</h3>
+      <p>Цього тут немає. За 9 днів ти отримаєш реальне полегшення в тілі і думках — але не «нове життя». Системна робота — це 6 тижнів у «Цілісній». Тут — тест-драйв.</p>
+    </div>
+
+    <div class="block reveal delay-2">
+      <h3>тобі потрібна психотерапія</h3>
+      <p>Я не психотерапевт. Якщо в тебе клінічна тривожність, депресія, ПТСР — спочатку до спеціаліста, потім до мене. Я це чесно кажу.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PRICE ====== -->
+<section class="price-sec" id="price">
+  <div class="wrap">
+    <div class="price-card reveal">
+      <div class="label">видихни · 9 днів</div>
+      <div class="num"><sup>€</sup>19</div>
+      <span class="tag">до твого нового стану, коли менше стресу і напруги</span>
+
+      <div class="compare">
+        Це <strong>менше</strong>, ніж:<br>
+        ~ один манікюр<br>
+        ~ одна зустріч з подругою на каву<br><br>
+        Так, це теж допомагає, але грає не в довгу.<br><br>
+        Протестуй, спробуй роботу з тілом —<br>тобі сподобається результат.
+      </div>
+
+      <a href="#" class="btn" onclick="alert('Тут буде форма оплати / посилання на бот'); return false;">хочу видихнути →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">питання</div>
+      <h2 class="display">Q&amp;A</h2>
+    </div>
+
+    <details class="reveal">
+      <summary>скільки часу треба на день?</summary>
+      <p>60-90 секунд — одна дія, яку ти додаєш до того, що вже робиш щоденно. Чекаєш поки завариться кава, стоїш у черзі, лягаєш у ліжко перед тим як заснути, чистиш зуби — і вже робиш дію. Часу шукати не треба.</p>
+    </details>
+    <details class="reveal delay-1">
+      <summary>що, якщо пропущу день?</summary>
+      <p>Нічого. Бот тебе чекає. Зайдеш — продовжиш з того ж місця. Без «треба надолужити», без вини, без тиску на себе.</p>
+    </details>
+    <details class="reveal delay-1">
+      <summary>коли старт?</summary>
+      <p>Одразу після оплати. Ти отримуєш доступ до бота в Telegram — і можеш стартувати того ж дня.</p>
+    </details>
+    <details class="reveal delay-2">
+      <summary>чи потрібні навушники?</summary>
+      <p>З навушниками зручніше, але не обов'язково. Аудіо короткі — можна слухати як тобі зручно. Головне, щоб ти почувалася комфортно.</p>
+    </details>
+    <details class="reveal delay-2">
+      <summary>я вже в терапії. це можна поєднувати?</summary>
+      <p>Так. Це не заміна терапії — це робота з тілом, нервовою системою та мисленням через мікродії. За потреби — проконсультуйся зі своїм терапевтом.</p>
+    </details>
+    <details class="reveal delay-3">
+      <summary>що буде на 9 день?</summary>
+      <p>Підведемо підсумки, ти відрефлексуєш свої зміни, отримаєш бонуси та подарунки від мене — і чесна розмова про те, як бути з цим далі.</p>
+    </details>
+    <details class="reveal delay-3">
+      <summary>можу повторити після 9 днів?</summary>
+      <p>Доступ до бота — назавжди. Повертайся, коли відчуєш потребу. Моя мета — дати тобі інструменти для щоденного використання, які вже дадуть результат після першого разу.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ====== STICKY CTA ====== -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="info">
+    <strong>€19</strong> · 9 днів
+    <small>видихни — почни зараз</small>
+  </div>
+  <a href="#price" class="btn">почати</a>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="display">видихни</div>
+  <p>© Тетяна Величковська · метод «Цілісна»</p>
+  <p>Працюю з тілом, мисленням та твоїм ресурсом.</p>
+</footer>
+
+<script>
+// ====== Force-start hero video (fallback if autoplay blocked) ======
+(function(){
+  const v = document.querySelector('.hero-video');
+  if (!v) return;
+  const tryPlay = () => v.play().catch(()=>{});
+  tryPlay();
+  v.addEventListener('canplay', tryPlay, { once: true });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tryPlay(); });
+  // last-resort: start on first user interaction
+  const onFirstTouch = () => { tryPlay(); document.removeEventListener('click', onFirstTouch); document.removeEventListener('scroll', onFirstTouch); };
+  document.addEventListener('click', onFirstTouch, { once: true, passive: true });
+  document.addEventListener('scroll', onFirstTouch, { once: true, passive: true });
+})();
+
+// ====== Reveal on scroll ======
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal, .script-reveal').forEach(el => io.observe(el));
+
+// ====== Parallax hero ======
+const heroImg = document.getElementById('heroImg');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (heroImg && y < window.innerHeight * 1.5) {
+        heroImg.style.transform = `translateY(${y * 0.35}px) scale(${1 + y * 0.0002})`;
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// ====== Sticky CTA — показуємо після hero ======
+const sticky = document.getElementById('stickyCta');
+const heroH = window.innerHeight * 0.8;
+const priceSec = document.getElementById('price');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const priceRect = priceSec.getBoundingClientRect();
+  const priceVisible = priceRect.top < window.innerHeight && priceRect.bottom > 0;
+  if (y > heroH && !priceVisible) {
+    sticky.classList.add('visible');
+  } else {
+    sticky.classList.remove('visible');
+  }
+  lastScroll = y;
+});
+
+// ====== Ripple + іскри на кнопках ======
+function emitSparks(btn, originX, originY, count = 8) {
+  const rect = btn.getBoundingClientRect();
+  for (let i = 0; i < count; i++) {
+    const spark = document.createElement('span');
+    spark.className = 'spark';
+    // позиція з якої вилітає
+    spark.style.left = (originX - rect.left) + 'px';
+    spark.style.top = (originY - rect.top) + 'px';
+    // випадковий напрямок
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 24 + Math.random() * 30;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance * 0.7;
+    spark.style.setProperty('--dx', dx + 'px');
+    spark.style.setProperty('--dy', dy + 'px');
+    // легка варіація розміру
+    const size = 3 + Math.random() * 4;
+    spark.style.width = spark.style.height = size + 'px';
+    // затримка для каскаду
+    spark.style.animationDelay = (i * 25) + 'ms';
+    btn.appendChild(spark);
+    setTimeout(() => spark.remove(), 1000 + i * 25);
+  }
+}
+
+document.querySelectorAll('.btn').forEach(btn => {
+  // Клік: ripple + іскри з точки тапу
+  btn.addEventListener('click', function (e) {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    const x = e.clientX || (rect.left + rect.width / 2);
+    const y = e.clientY || (rect.top + rect.height / 2);
+    ripple.style.left = (x - rect.left - size / 2) + 'px';
+    ripple.style.top = (y - rect.top - size / 2) + 'px';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 700);
+    emitSparks(this, x, y, 10);
+  });
+
+  // Hover на десктопі — м'який feu з'являється при наведенні
+  if (window.matchMedia('(hover: hover)').matches) {
+    btn.addEventListener('mouseenter', function (e) {
+      const rect = this.getBoundingClientRect();
+      emitSparks(this, rect.left + rect.width / 2, rect.top + rect.height / 2, 5);
+    });
+  }
+
+  // На мобільному — touch-feedback іскрами
+  btn.addEventListener('touchstart', function (e) {
+    const touch = e.touches[0];
+    const rect = this.getBoundingClientRect();
+    emitSparks(this, touch.clientX, touch.clientY, 6);
+  }, { passive: true });
+});
+
+// ====== Smooth scroll для якорів ======
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ====== Тонкий haptic-feel на iOS при тапі на кнопки (якщо доступно) ======
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('touchstart', () => {
+    if (navigator.vibrate) navigator.vibrate(8);
+  });
+});
+</script>
+
+</body>
+</html>
